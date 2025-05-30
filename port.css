@@ -17,6 +17,74 @@ body {
   overflow-x: hidden;
 }
 
+
+.mobile-menu-toggle {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  background: linear-gradient(45deg, #ff6b35, #ff8c42);
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+}
+
+.hamburger {
+  width: 25px;
+  height: 20px;
+  position: relative;
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+.hamburger span:nth-child(1) {
+  top: 0px;
+}
+
+.hamburger span:nth-child(2) {
+  top: 8px;
+}
+
+.hamburger span:nth-child(3) {
+  top: 16px;
+}
+
+.hamburger.open span:nth-child(1) {
+  top: 8px;
+  transform: rotate(135deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+.hamburger.open span:nth-child(3) {
+  top: 8px;
+  transform: rotate(-135deg);
+}
+
 #main {
   display: flex;
   height: 100vh;
@@ -37,6 +105,7 @@ body {
   animation: slideInLeft 0.8s ease-out forwards;
   z-index: 10;
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
 }
 
 @keyframes slideInLeft {
@@ -53,7 +122,7 @@ body {
 .side-content {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 30px;
   color: white;
   font-size: 30px;
   cursor: pointer;
@@ -365,29 +434,78 @@ form {
   transform: translateY(0);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: block;
+  }
+
   #side {
-    width: 220px;
-    padding: 20px 10px;
+    transform: translateX(-100%);
+    width: 280px;
+    background: linear-gradient(180deg, #1a0f0a 0%, #2c1810 100%);
+    backdrop-filter: blur(10px);
+    animation: none;
+  }
+
+  #side.mobile-open {
+    transform: translateX(0);
+  }
+
+  .side-content {
+    gap: 40px;
+    font-size: 24px;
+    padding: 20px;
+  }
+
+  .side-box {
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: rgba(255, 107, 53, 0.1);
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .side-box:hover {
+    background: rgba(255, 107, 53, 0.2);
+    transform: translateX(0) scale(1.05);
+  }
+
+  #main {
+    flex-direction: column;
   }
 
   #content {
-    left: 250px;
-    padding-top: 150px;
+    left: 0;
+    padding: 80px 20px 20px 20px;
+    text-align: center;
+    position: relative;
+    top: 0;
+    bottom: 0;
   }
 
   #image {
-    top: 150px;
-    left: 350px;
+    position: relative;
+    left: 0;
+    top: 20px;
+    margin: 20px auto;
+    display: block;
     width: 250px;
-    max-width: 100%;
+    max-width: 90%;
     height: auto;
   }
 
   #about-me {
+    padding-left: 0;
     flex-direction: column;
-    padding-left: 250px;
+    padding: 80px 20px 50px 20px;
     text-align: center;
+  }
+
+  #about-content {
+    left: 0;
+    padding: 20px;
+    width: 100%;
+    position: relative;
   }
 
   #img2 {
@@ -396,6 +514,117 @@ form {
     top: 0;
     transform: none;
     width: 250px;
+    max-width: 90%;
+    height: auto;
+    margin: 20px auto;
+    display: block;
+  }
+
+  #skills {
+    padding-left: 0;
+    padding: 80px 20px 50px 20px;
+    flex-direction: column;
+  }
+
+  #skill-content {
+    left: 0;
+    padding: 10px;
+    width: 100%;
+    position: relative;
+  }
+
+  #skill-p {
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+
+  #projects {
+    padding-left: 0;
+    padding: 80px 20px 50px 20px;
+    flex-direction: column;
+    padding-top: 80px;
+  }
+
+  #project-content {
+    left: 0;
+    padding: 10px;
+    width: 100%;
+    position: relative;
+  }
+
+  .img6 {
+    width: 280px;
+    height: 280px;
+    margin: 20px auto;
+    display: block;
+  }
+
+  #contact {
+    padding-left: 0;
+    padding: 80px 20px 50px 20px;
+    flex-direction: column;
+  }
+
+  #head4 {
+    position: relative;
+    left: 0;
+    top: 0;
+    text-align: center;
+    transform: none;
+    margin-bottom: 30px;
+  }
+
+  form {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  .btn3, #btn5 {
+    width: 100%;
+    max-width: 350px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  #side {
+    width: 250px;
+    padding: 20px 10px;
+  }
+
+  .side-content {
+    gap: 25px;
+    font-size: 26px;
+  }
+
+  #content {
+    left: 280px;
+    padding-top: 150px;
+  }
+
+  #image {
+    top: 150px;
+    left: 350px;
+    width: 280px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  #about-me {
+    flex-direction: column;
+    padding-left: 280px;
+    text-align: center;
+  }
+
+  #img2 {
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: none;
+    width: 280px;
     max-width: 100%;
     height: auto;
     margin-top: 20px;
@@ -404,14 +633,14 @@ form {
   #skills {
     flex-direction: column;
     align-items: flex-start;
-    padding-left: 250px;
+    padding-left: 280px;
   }
 
   #skill-content {
     left: 0;
     padding: 20px;
     width: 100%;
-    max-width: calc(100vw - 270px);
+    max-width: calc(100vw - 300px);
   }
 
   #skill-p {
@@ -421,7 +650,7 @@ form {
 
   #projects {
     width: auto;
-    padding-left: 250px;
+    padding-left: 280px;
     padding-right: 20px;
   }
 
@@ -429,18 +658,18 @@ form {
     left: 0;
     padding: 20px;
     width: 100%;
-    max-width: calc(100vw - 270px);
+    max-width: calc(100vw - 300px);
   }
 
   .img6 {
-    width: 220px;
-    height: 220px;
+    width: 250px;
+    height: 250px;
     margin: 15px auto;
     display: block;
   }
 
   #contact {
-    padding-left: 250px;
+    padding-left: 280px;
   }
 
   #head4 {
@@ -463,291 +692,103 @@ form {
   }
 }
 
-@media (max-width: 768px) {
-  #main {
-    flex-direction: column;
+@media (max-width: 480px) {
+  .mobile-menu-toggle {
+    top: 15px;
+    left: 15px;
+    padding: 8px;
+  }
+
+  .hamburger {
+    width: 20px;
+    height: 16px;
   }
 
   #side {
-    position: relative;
-    width: 100%;
-    height: auto;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 10px;
+    width: 250px;
   }
 
   .side-content {
-    flex-direction: row;
-    gap: 15px;
     font-size: 20px;
+    gap: 30px;
+  }
+
+  .side-box {
+    padding: 12px 15px;
+    font-size: 18px;
   }
 
   #content {
-    left: 0;
-    padding: 20px;
-    text-align: center;
-    position: relative;
-    top: 0;
-    bottom: 0;
+    padding: 70px 15px 15px 15px;
   }
 
   #image {
-    position: relative;
-    left: 0;
-    top: 20px;
-    margin: 20px auto;
-    display: block;
     width: 200px;
-    max-width: 90%;
-    height: auto;
   }
 
-  #about-me {
-    padding-left: 0;
-    flex-direction: column;
-    padding: 50px 20px;
-    text-align: center;
-  }
-
-  #about-content {
-    left: 0;
-    padding: 20px;
-    width: 100%;
-    position: relative;
-  }
-
-  #img2 {
-    position: relative;
-    left: 0;
-    top: 0;
-    transform: none;
-    width: 200px;
-    max-width: 90%;
-    height: auto;
-    margin: 20px auto;
-    display: block;
-  }
-
-  #skills {
-    padding-left: 0;
-    padding: 50px 20px;
-    flex-direction: column;
-  }
-
-  #projects {
-    padding-left: 0;
-    padding: 50px 20px;
-    flex-direction: column;
-    padding-top: 50px;
-  }
-
-  #contact {
-    padding-left: 0;
-    padding: 50px 20px;
-    flex-direction: column;
-  }
-
-  #skill-content {
-    left: 0;
-    padding: 10px;
-    width: 100%;
-    position: relative;
-  }
-
-  #project-content {
-    left: 0;
-    padding: 10px;
-    width: 100%;
-    position: relative;
-  }
-
-  #skill-p {
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-  }
-
-  #head4 {
-    position: relative;
-    left: 0;
-    top: 0;
-    text-align: center;
-    transform: none;
-  }
-
-  form {
-    position: relative;
-    left: 0;
-    top: 0;
-    width: 100%;
-    padding: 20px 0;
-  }
-
-  .btn3, #btn5 {
-    width: 100%;
+  #about-me, #skills, #projects, #contact {
+    padding: 70px 15px 40px 15px;
   }
 
   .img6 {
-    width: 180px;
-    height: 180px;
-    margin: 20px auto;
-    display: block;
+    width: 220px;
+    height: 220px;
+  }
+
+  .btn3, #btn5 {
+    max-width: 100%;
   }
 }
 
 @media (max-width: 320px) {
-  #side {
-    width: 100%;
-    height: auto;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 10px 0;
-    position: relative;
+  .side-content {
+    font-size: 18px;
+    gap: 25px;
   }
 
-  .side-content {
-    flex-direction: row;
-    gap: 8px;
+  .side-box {
+    padding: 10px 12px;
     font-size: 16px;
   }
 
-  #content {
-    left: 0;
-    padding: 20px 10px;
-    text-align: center;
-    position: relative;
-    top: 0;
-    bottom: 0;
-  }
-
   #image {
-    position: relative;
-    left: 0;
-    top: 10px;
-    width: 160px;
-    max-width: 90%;
-    height: auto;
-    margin: 15px auto;
-    display: block;
-  }
-
-  #about-me {
-    flex-direction: column;
-    padding: 30px 10px;
-    text-align: center;
-  }
-
-  #about-content {
-    padding: 10px;
-    left: 0;
-    width: 100%;
-    position: relative;
-  }
-
-  #img2 {
-    position: relative;
-    left: 0;
-    top: 0;
-    transform: none;
-    width: 160px;
-    max-width: 90%;
-    height: auto;
-    margin: 15px auto;
-    display: block;
-  }
-
-  #skills {
-    flex-direction: column;
-    padding: 30px 10px;
-  }
-
-  #skill-content {
-    left: 0;
-    padding: 10px;
-    width: 100%;
-    position: relative;
-  }
-
-  #skill-p {
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-  }
-
-  #projects {
-    width: 100%;
-    padding: 30px 10px;
-    padding-top: 30px;
-  }
-
-  #project-content {
-    left: 0;
-    padding: 10px;
-    width: 100%;
-    position: relative;
+    width: 180px;
   }
 
   .img6 {
-    width: 160px;
-    height: 160px;
-    margin: 15px auto;
-    display: block;
+    width: 200px;
+    height: 200px;
   }
 
-  #contact {
-    padding: 30px 10px;
+  #content {
+    padding: 65px 10px 10px 10px;
   }
 
-  #head4 {
-    position: relative;
-    left: 0;
-    top: 0;
-    text-align: center;
-    transform: none;
-  }
-
-  form {
-    position: relative;
-    left: 0;
-    top: 0;
-    width: 100%;
-    padding: 10px 0;
-  }
-
-  .btn3,
-  #btn5 {
-    width: 100%;
+  #about-me, #skills, #projects, #contact {
+    padding: 65px 10px 35px 10px;
   }
 }
 
-@media (max-width: 780px) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
 
-  #side,
-  #content,
-  #image,
-  .side-box,
-  .skills-points,
-  .img6,
-  .btn3,
-  #btn5 {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-  }
+.mobile-overlay.active {
+  display: block;
+  opacity: 1;
+}
 
-  .fade-in,
-  .from-left {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .from-left.show {
-    opacity: 1 !important;
-    transform: none !important;
+@media (max-width: 768px) {
+  .mobile-overlay.active {
+    display: block;
   }
 }
